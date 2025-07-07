@@ -505,19 +505,29 @@
             
             /* Ensure container doesn't overflow */
             .container {
-                padding: 0 20px;
+                padding: 0 10px;
                 max-width: 100%;
                 overflow-x: hidden;
+                width: 100%;
             }
             
             /* Additional mobile text fixes */
             body {
                 overflow-x: hidden;
+                width: 100%;
             }
             
             * {
                 max-width: 100%;
                 box-sizing: border-box;
+            }
+            
+            /* Make sure hero content fits like h2 */
+            .hero-content h2 {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+                padding: 0 5px;
+                max-width: 100%;
             }
             
             /* Fix button sizing on mobile */
