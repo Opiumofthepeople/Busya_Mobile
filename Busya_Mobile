@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БУСЯ - Профессиональные разборки</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ff4444;
+            text-shadow: 0 0 20px #ff4444;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .contact-btn {
+            background: linear-gradient(45deg, #ff4444, #cc0000);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: 2px solid #ff4444;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(45deg, #cc0000, #ff4444);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 68, 68, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 68, 68, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 68, 68, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 68, 68, 0.03) 2px,
+                    rgba(255, 68, 68, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .hero-gallery {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #ff4444;
+            box-shadow: 0 0 30px rgba(255, 68, 68, 0.3);
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .hero-image:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .hero-image:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 68, 68, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            color: #ff4444;
+            margin-bottom: 30px;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.6;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            color: #ff4444;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #ff4444;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 68, 68, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ff4444, #cc0000);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.8);
+            animation: pulse 2s infinite;
+        }
+
+        .service-card:hover::before {
+            animation: shine 0.8s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 68, 68, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff4444;
+            text-transform: uppercase;
+        }
+
+        .service-card p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffff00;
+            text-align: right;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #ff4444;
+            text-transform: uppercase;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            padding: 30px;
+            border-radius: 10px;
+            transform: skewY(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: skewY(0deg) scale(1.05);
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #ff4444;
+            text-transform: uppercase;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid #ff4444;
+        }
+
+        .contact-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ff4444;
+            text-transform: uppercase;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        .warning {
+            background: linear-gradient(45deg, #ff4444, #ffff00);
+            color: #000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.7; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content h2 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Hide floating images on mobile */
+            .hero-gallery {
+                display: none;
+            }
+            
+            /* Fix hero content layout on mobile */
+            .hero-content {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            /* Fix hero text and image layout */
+            .hero-content > div[style*="display: flex"] {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            
+            .hero-content > div[style*="display: flex"] > div[style*="flex: 0 0 200px"] {
+                flex: none !important;
+                margin: 20px auto 0 auto;
+            }
+            
+            /* Footer mobile layout */
+            .footer-content[style*="display: flex"] {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            
+            .footer-content[style*="display: flex"] > div[style*="flex: 0 0 150px"] {
+                flex: none !important;
+                margin-top: 20px;
+            }
+            
+            /* Contact items mobile layout */
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">БУСЯ</div>
+                <a href="#contact" class="contact-btn">Вызвать на разборку</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-gallery">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5CdXN5YSBJbWFnZSAxPC90ZXh0Pjwvc3ZnPg==" alt="Буся в бою" class="hero-image">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5CdXN5YSBJbWFnZSAyPC90ZXh0Pjwvc3ZnPg==" alt="Буся на страже" class="hero-image">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMzMzMyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5CdXN5YSBJbWFnZSAzPC90ZXh0Pjwvc3ZnPg==" alt="Буся готова к делу" class="hero-image">
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Профессиональные Разборки</h1>
+                <h2>Буся решает проблемы силой</h2>
+                <div style="display: flex; align-items: center; gap: 30px; margin: 30px 0; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <p>Когда слова не помогают, приходит БУСЯ. Крупная, боевая и абсолютно беспощадная к врагам. Любые конфликты решаются быстро и эффективно.</p>
+                    </div>
+                    <div style="flex: 0 0 200px;">
+                        <img src="https://i.ibb.co/MD2NsKkH/sticker2.webp" alt="Решительный взгляд Буси" style="width: 200px; height: auto; border-radius: 15px; border: 3px solid #ff4444; box-shadow: 0 0 20px rgba(255, 68, 68, 0.6);" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <a href="#services" class="contact-btn">Посмотреть услуги</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Боевые Услуги</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Устрашение соседей</h3>
+                    <p>Шумные соседи не дают спать? Буся проведет профилактическую беседу через стену. Гарантированный результат с первого визита.</p>
+                    <div class="price">от 2500₽</div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Разборки на работе</h3>
+                    <p>Коллеги достали? Начальник превышает полномочия? Буся разберется с любыми служебными конфликтами. Деловой подход.</p>
+                    <div class="price">от 5000₽</div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Семейные разборки</h3>
+                    <p>Родственники зашли слишком далеко? Буся восстановит справедливость и покажет, кто в доме главный.</p>
+                    <div class="price">от 3500₽</div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Защита территории</h3>
+                    <p>Охрана вашего двора, подъезда, дачи, дома или квартиры. Буся патрулирует периметр и устраняет нарушителей любого размера.</p>
+                    <div class="price">от 7000₽/день</div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Экстренные выезды</h3>
+                    <p>Срочное решение любых ситуаций в любое время суток. Буся приедет на место и разберется с проблемой независимо от её сложности.</p>
+                    <div class="price">от 8000₽</div>
+                </div>
+
+                <div class="service-card">
+                    <h3>VIP Сопровождение</h3>
+                    <p>Персональная охрана для важных мероприятий. Буся обеспечит безопасность и покажет статус владельца.</p>
+                    <div class="price">от 12000₽/час</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>О Специалисте</h2>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <img src="https://i.ibb.co/F1fdFkv/sticker.webp" alt="Буся - профессиональный решатель проблем" style="width: 300px; height: auto; border-radius: 15px; border: 4px solid #ff4444; box-shadow: 0 0 30px rgba(255, 68, 68, 0.5);" onerror="this.style.display='none'">
+                </div>
+                
+                <p>Буся - профессиональный решатель проблем с многолетним опытом. Крупная комплекция, железные нервы и полная готовность к любым разборкам.</p>
+                <p>Самостоятельная, не зависит от чужого мнения и действует исключительно в интересах клиента. Специализируется на быстром и эффективном решении конфликтных ситуаций.</p>
+                
+                <div class="warning">
+                    ⚠️ Внимание! Буся не несет ответственности за последствия своих действий. Все услуги предоставляются "как есть".
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <p>Успешных разборок</p>
+                    </div>
+                    <div class="stat">
+                        <h3>0</h3>
+                        <p>Проигранных схваток</p>
+                    </div>
+                    <div class="stat">
+                        <h3>24/7</h3>
+                        <p>Готовность к бою</p>
+                    </div>
+                    <div class="stat">
+                        <h3>5★</h3>
+                        <p>Уровень агрессии</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Заказать Разборку</h2>
+            <p>Не медлите! Каждая секунда промедления усиливает позиции ваших противников.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Экстренная связь</h3>
+                    <p>Email: busya_lososya@meow.ru<br>
+                    Время ответа: в течение 1 часа<br>
+                    Предварительная запись обязательна</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h3>Условия работы</h3>
+                    <p>Оплата: наличными, до начала разборки<br>
+                    Альтернативная оплата: Свежий лосось или Феликс суп<br>
+                    Выезд: в любую точку города<br>
+                    Гарантия: 100% результат или возврат денег</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h3>Специальные предложения</h3>
+                    <p>Скидка 20% постоянным клиентам<br>
+                    Групповые разборки со скидкой<br>
+                    Ночные вызовы +50% к тарифу</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <div style="flex: 1;">
+                    <p>&copy; 2025 БУСЯ Services. Все права защищены силой.</p>
+                    <p>Лицензия на разборки MEOW №14532. Сертификат боевой готовности действителен.</p>
+                </div>
+                <div style="flex: 0 0 150px;">
+                    <img src="https://i.ibb.co/Fk5k2717/sticker1.webp" alt="Буся - всегда готова к новым вызовам" style="width: 150px; height: auto; border-radius: 10px; border: 2px solid #ff4444; box-shadow: 0 0 15px rgba(255, 68, 68, 0.4); opacity: 0.8;" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add some dynamic effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Random aggressive phrases that appear on page load
+        const phrases = [
+            "🥊 Готов к бою!",
+            "⚡ Проблемы? Решаем!",
+            "🔥 Буся на связи!",
+            "💪 Время разборок!",
+            "⚔️ Враги дрожат!"
+        ];
+        
+        setTimeout(() => {
+            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+            console.log(randomPhrase);
+        }, 1000);
+    </script>
+</body>
+</html>
