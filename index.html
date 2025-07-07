@@ -464,6 +464,21 @@
                 line-height: 1.4;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
+                padding: 0 10px;
+                margin: 0 auto;
+                max-width: 100%;
+            }
+            
+            /* Fix text container on mobile */
+            .hero-content > div[style*="display: flex"] > div[style*="flex: 1"] {
+                min-width: auto !important;
+                padding: 0 10px;
+                max-width: 100%;
+            }
+            
+            .hero-content > div[style*="display: flex"] > div[style*="flex: 1"] p {
+                padding: 0;
+                margin: 0;
             }
             
             /* Footer mobile layout */
@@ -490,9 +505,19 @@
             
             /* Ensure container doesn't overflow */
             .container {
-                padding: 0 15px;
+                padding: 0 20px;
                 max-width: 100%;
                 overflow-x: hidden;
+            }
+            
+            /* Additional mobile text fixes */
+            body {
+                overflow-x: hidden;
+            }
+            
+            * {
+                max-width: 100%;
+                box-sizing: border-box;
             }
             
             /* Fix button sizing on mobile */
