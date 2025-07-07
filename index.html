@@ -410,10 +410,13 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
             }
             .hero-content h2 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
+                margin-bottom: 20px;
             }
             .section-title {
                 font-size: 2rem;
@@ -429,35 +432,74 @@
             
             /* Fix hero content layout on mobile */
             .hero-content {
-                padding: 20px;
-                margin: 0 10px;
+                padding: 15px;
+                margin: 0 5px;
+                max-width: calc(100% - 10px);
             }
             
             /* Fix hero text and image layout */
             .hero-content > div[style*="display: flex"] {
                 flex-direction: column !important;
                 text-align: center;
+                gap: 15px !important;
+            }
+            
+            .hero-content > div[style*="display: flex"] > div[style*="flex: 1"] {
+                min-width: auto !important;
             }
             
             .hero-content > div[style*="display: flex"] > div[style*="flex: 0 0 200px"] {
                 flex: none !important;
-                margin: 20px auto 0 auto;
+                margin: 0 auto;
+            }
+            
+            .hero-content > div[style*="display: flex"] > div[style*="flex: 0 0 200px"] img {
+                width: 150px !important;
+                height: auto !important;
+            }
+            
+            /* Ensure text doesn't overflow */
+            .hero-content p {
+                font-size: 1rem;
+                line-height: 1.4;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
             
             /* Footer mobile layout */
             .footer-content[style*="display: flex"] {
                 flex-direction: column !important;
                 text-align: center;
+                gap: 15px !important;
             }
             
             .footer-content[style*="display: flex"] > div[style*="flex: 0 0 150px"] {
                 flex: none !important;
-                margin-top: 20px;
+                margin-top: 15px;
+            }
+            
+            .footer-content[style*="display: flex"] > div[style*="flex: 0 0 150px"] img {
+                width: 120px !important;
             }
             
             /* Contact items mobile layout */
             .contact-info {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Ensure container doesn't overflow */
+            .container {
+                padding: 0 15px;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            /* Fix button sizing on mobile */
+            .contact-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                word-wrap: break-word;
             }
         }
     </style>
