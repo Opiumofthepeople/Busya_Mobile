@@ -410,13 +410,21 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-content h1 {
-                font-size: 2rem;
-                line-height: 1.2;
+                font-size: 1.8rem;
+                line-height: 1.1;
                 margin-bottom: 15px;
+                padding: 0 5px;
+                max-width: 100%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
             .hero-content h2 {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
                 margin-bottom: 20px;
+                padding: 0 5px;
+                max-width: 100%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
             .section-title {
                 font-size: 2rem;
@@ -731,6 +739,9 @@
             const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
             console.log(randomPhrase);
         }, 1000);
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
